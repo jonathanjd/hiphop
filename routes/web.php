@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +26,13 @@ Route::get('information', function () {
 Route::get('contact', function () {
     return view('page.contact');
 })->name('contact');
+
+
+Route::get('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+});
