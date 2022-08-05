@@ -30,4 +30,11 @@ class AuthController extends Controller
 
         return redirect()->back()->withErrors(['msg' => 'These credentials do not match our records.']);
     }
+
+    public function logout()
+    {
+        # code...
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
