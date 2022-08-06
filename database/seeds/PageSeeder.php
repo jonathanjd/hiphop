@@ -16,8 +16,8 @@ class PageSeeder extends Seeder
         Page::truncate();
 
         $page = new Page();
-        $page->name = 'Page';
-        $page->slug = $page->slugify('page');
+        $page->name = 'Schools';
+        $page->slug = $page->slugify('Schools');
         $page->save();
 
         $parent_id = $page->id;

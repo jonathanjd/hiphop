@@ -23,7 +23,7 @@ class CreatePagesTable extends Migration
             $table->text('content_body')->nullable();
             $table->text('content_footer')->nullable();
             $table->text('content_call_action_top')->nullable();
-            $table->text('content_call_action_bootom')->nullable();
+            $table->text('content_call_action_bottom')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->boolean('show')->default(true);
             $table->timestamps();

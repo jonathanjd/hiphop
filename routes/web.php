@@ -39,5 +39,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('pages', [PageController::class, 'index'])->name('admin.page');
+    Route::get('pages-list', [PageController::class, 'list']);
+    Route::get('pages-edit/{id}', [PageController::class, 'edit']);
 
 });

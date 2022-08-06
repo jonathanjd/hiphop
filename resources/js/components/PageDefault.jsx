@@ -1,9 +1,19 @@
-import React from "react";
+import Axios from "axios";
+import React, { useState, useEffect } from "react";
 
-export default function PageDefault() {
-    return (
-        <div className="row">
-            <div className="col-md-4">
+export default function PageDefault({ myChangeManage }) {
+    const [pages, setPages] = useState([]);
+
+    useEffect(() => {
+        Axios.get("/admin/pages-list").then((response) => {
+            const { data } = response;
+            setPages(data);
+        });
+    }, []);
+
+    const cmp = pages.map((page) => {
+        return (
+            <div key={page.id} className="col-md-4">
                 <div className="card">
                     <img
                         src="/img/page.jpg"
@@ -11,14 +21,21 @@ export default function PageDefault() {
                         alt="..."
                     />
                     <div className="card-body">
-                        <h5 className="card-title">Schools</h5>
+                        <h5 className="card-title">{page.name}</h5>
                         <p className="card-text"></p>
                     </div>
                     <div className="card-footer">
-                        <button className="btn btn-success">Manage</button>
+                        <button
+                            onClick={() => myChangeManage("pageList", page.id)}
+                            className="btn btn-success"
+                        >
+                            Manage
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    });
+
+    return <div className="row">{cmp}</div>;
 }
